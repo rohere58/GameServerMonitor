@@ -18,18 +18,16 @@ cmd = [command.to_dict() for command in tree.get_commands(guild=None if public o
 
 @app.route('/')
 def index():
-    heroku = {}
+    show_alert = False
+    heroku_app_name = ''
 
     if match := re.search(r':\/\/([a-z|\d|-]+)\.herokuapp\.com', request.base_url):
         heroku_app_name = match.groups()[0]
-        print(heroku_app_name)
-        print(os.getenv('HEROKU_APP_NAME'))
 
-    # if app_name := os.getenv('HEROKU_APP_NAME'):
-    #     if app_name == '':
-    #         return
+        if os.getenv('HEROKU_APP_NAME').strip() != heroku_app_name:
+            show_alert = True
 
-    return render_template('index.html', invite_link=invite_link, heroku_app_name=request.base_url)
+    return render_template('index.html', invite_link=invite_link, show_alert=show_alert, heroku_app_name=heroku_app_name)
 
 
 if os.getenv('WEB_API_ENABLE', '').lower() == 'true':
