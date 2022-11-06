@@ -21,7 +21,9 @@ def index():
     heroku = {}
 
     if match := re.search(r':\/\/([a-z|\d|-]+)\.herokuapp\.com', request.base_url):
-        heroku_app_name = match.group()[0]
+        heroku_app_name = match.group()[1]
+        print(heroku_app_name)
+        print(os.getenv('HEROKU_APP_NAME'))
 
     # if app_name := os.getenv('HEROKU_APP_NAME'):
     #     if app_name == '':
