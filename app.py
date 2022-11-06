@@ -20,7 +20,7 @@ cmd = [command.to_dict() for command in tree.get_commands(guild=None if public o
 def index():
     heroku = {}
 
-    if match := re.search(r':\/\/([a-z|\d|-]+)\.herokuapp\.com', urlparse(request.base_url)):
+    if match := re.search(r':\/\/([a-z|\d|-]+)\.herokuapp\.com', request.base_url):
         heroku_app_name = match.group()[0]
 
     # if app_name := os.getenv('HEROKU_APP_NAME'):
