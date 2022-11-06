@@ -27,7 +27,7 @@ def index():
     #     if app_name == '':
     #         return
 
-    return render_template('index.html', invite_link=invite_link, heroku_app_name=heroku_app_name)
+    return render_template('index.html', invite_link=invite_link, heroku_app_name=request.base_url)
 
 
 if os.getenv('WEB_API_ENABLE', '').lower() == 'true':
